@@ -3,7 +3,14 @@ import { visibleContacts } from "../../redux/contactSlice";
 import { Contact } from "../Contacts/Contact";
 
 export const ContactList = () => {
-  const contact = useSelector(visibleContacts);
+  const contacts = useSelector(visibleContacts);
+
+  // Проверка уникальности ID
+  const ids = contacts.map((contact) => contact.id);
+  const uniqueIds = new Set(ids);
+  if (uniqueIds.size !== ids.length) {
+    console.warn("Есть дублирующиеся ID среди контактов!", ids);
+  }
 
   return (
     <table>
@@ -16,7 +23,7 @@ export const ContactList = () => {
         </tr>
       </thead>
       <tbody>
-        {contact.map((contact) => (
+        {contacts.map((contact) => (
           <Contact key={contact.id} item={contact} />
         ))}
       </tbody>

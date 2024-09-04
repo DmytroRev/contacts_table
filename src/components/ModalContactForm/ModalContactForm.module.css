@@ -1,0 +1,29 @@
+/* .modalContainer {
+    width: 500px;
+} */
+
+.formModal {
+    padding: 15px 100px;
+    background-color: white;
+}
+
+.containerField {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.input {
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid black;
+    transition: border 0.3s ease, border-radius 0.3s ease;
+}
+
+.input:focus {
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid silver;
+}
+
+

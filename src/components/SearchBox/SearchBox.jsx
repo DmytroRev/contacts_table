@@ -7,7 +7,7 @@ import {
   selectPhoneFilter,
 } from "../../redux/selectors";
 import { setStatusFilter } from "../../redux/filterSlice";
-
+import css from "./SearchBox.module.css";
 export const SearchBox = () => {
   const filterName = useSelector(selectNameFilter);
   const filterUsername = useSelector(selectUsernameFilter);
@@ -31,26 +31,31 @@ export const SearchBox = () => {
   };
 
   return (
-    <div>
+    <div className={css.containerForInput}>
       <input
+        className={css.input}
         type="text"
         value={filterName}
         onChange={handleFilterChange("name")}
         placeholder="Filter by name"
       />
+
       <input
+        className={css.input}
         type="text"
         value={filterUsername}
         onChange={handleFilterChange("username")}
         placeholder="Filter by username"
       />
       <input
+        className={css.input}
         type="email"
         value={filterEmail}
         onChange={handleFilterChange("email")}
         placeholder="Filter by email"
       />
       <input
+        className={css.input}
         type="text"
         value={filterPhone}
         onChange={handleFilterChange("phone")}

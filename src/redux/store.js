@@ -13,17 +13,17 @@ import {
   REGISTER,
 } from "redux-persist";
 
-const contactsPersistConfig = {
-  key: "contacts",
+const persistConfig = {
+  key: "contactValue",
   storage,
   whitelist: ["items"],
 };
 
-const persistedReducer = persistReducer(contactsPersistConfig, contactsReducer);
+const persistedContactsReducer = persistReducer(persistConfig, contactsReducer);
 
 export const store = configureStore({
   reducer: {
-    contacts: persistedReducer,
+    contacts: persistedContactsReducer,
     filters: filtersReducer,
   },
   middleware: (getDefaultMiddleware) =>

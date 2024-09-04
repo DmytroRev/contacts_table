@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import { getContacts } from "../../redux/contactsApi";
 import { ContactList } from "../ContactList/ContactList";
 import { SearchBox } from "../SearchBox/SearchBox";
-import { ContactForm } from "../ContactForm/ContactForm";
+import { ModalContactForm } from "../ModalContactForm/ModalContactForm";
+import { ButtonOpenModal } from "../ButtonOpenModal/ButtonOpenModal";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -12,7 +13,8 @@ export default function App() {
   }, [dispatch]);
   return (
     <>
-      <ContactForm />
+      <ButtonOpenModal />
+      <ModalContactForm />
       <SearchBox />
       <ContactList />
     </>

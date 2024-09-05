@@ -4,11 +4,12 @@ import * as Yup from "yup";
 import { addContact } from "../../redux/contactsApi";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Modal from "react-modal";
-import "./ModalContactForm.css";
 import clsx from "clsx";
 import { AppDispatch } from "../../redux/store";
 import { v4 as uuidv4 } from 'uuid'; 
 import { Contact } from "../../types";
+import "./ModalContactForm.css";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -81,7 +82,6 @@ export const ModalContactForm = ({ isOpen, onClose }: ModalContactFormProps) => 
   return (
     <div className='modalContainer'>
       <Modal
-        className='modal'
         isOpen={isOpen}
         onRequestClose={onClose}
         style={customStyles}

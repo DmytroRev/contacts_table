@@ -1,23 +1,21 @@
 import { useState } from "react";
-import { ModalContactForm } from "../ModalContactForm/ModalContactForm";
-import css from "./ButtonOpenModal.module.css";
-export const ButtonOpenModal = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+// import { ModalContactForm } from "../ModalContactForm/ModalContactForm";
+import "./ButtonOpenModal.css";
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+type ButtonOpenModalProps = {
+  openModal: () => void;
+}
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+export const ButtonOpenModal = ({openModal}: ButtonOpenModalProps) => {
+
+
 
   return (
     <div>
-      <button className={css.button} type="click" onClick={openModal}>
+      <button className='button' onClick={openModal}>
         Add contact
       </button>
-      <ModalContactForm isOpen={isModalOpen} onClose={closeModal} />
+
     </div>
   );
 };

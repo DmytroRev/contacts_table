@@ -1,12 +1,14 @@
 import { useSelector } from "react-redux";
-
+import { Contact as ContactType } from '../../types';
 import { visibleContacts } from "../../redux/contactSlice";
 import { Contact } from "../Contacts/Contact.js";
-import css from "./ContactList.module.css";
-export const ContactList = () => {
+import "./ContactList.module.css";
+import React from "react";
+
+
+export const ContactList: React.FC = () => {
   const contacts = useSelector(visibleContacts);
 
-  // Проверка уникальности ID
   const ids = contacts.map((contact) => contact.id);
   const uniqueIds = new Set(ids);
   if (uniqueIds.size !== ids.length) {
@@ -24,7 +26,7 @@ export const ContactList = () => {
         </tr>
       </thead>
       <tbody>
-        {contacts.map((contact) => (
+        {contacts.map((contact: ContactType) => (
           <Contact key={contact.id} item={contact} />
         ))}
       </tbody>

@@ -21,7 +21,6 @@ export const SearchBox = () => {
   const handleFilterChange = (filterType: FilterType) => (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value.trim();
 
-    // Валидация для phone
     if (filterType === "phone") {
       const phoneRegex = /^[\d+ -]*$/;
       if (!phoneRegex.test(value)) {

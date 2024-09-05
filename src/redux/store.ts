@@ -1,3 +1,4 @@
+// store.ts
 import { configureStore } from "@reduxjs/toolkit";
 import { contactsReducer } from "./contactSlice";
 import { filtersReducer } from "./filterSlice";
@@ -12,6 +13,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+
 
 const persistConfig = {
   key: "contactValue",
@@ -35,3 +37,7 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
+// Типы для использования в компонентах
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

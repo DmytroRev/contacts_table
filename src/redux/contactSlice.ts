@@ -1,43 +1,46 @@
-import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { addContact, getContacts } from "./contactsApi";
 import { selectContacts } from "./selectors";
 import { selectFilters } from "./filterSlice";
+import { Contact, ContactsState } from "../types";
+
+const initialState: ContactsState = {
+  items: [],
+  loading: false,
+  error: null
+};
 
 const contactSlice = createSlice({
   name: "contacts",
-  initialState: {
-    items: [],
-    loading: false,
-    error: null,
-  },
-
+  initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getContacts.pending, (state) => {
         state.loading = true;
-        state.error = false;
+        state.error = null;
       })
-      .addCase(getContacts.fulfilled, (state, action) => {
+      .addCase(getContacts.fulfilled, (state, action: PayloadAction<Contact[]>) => {
         state.loading = false;
         state.error = null;
         state.items = action.payload;
       })
       .addCase(getContacts.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload?.message || "Failed to load contacts";
       })
       .addCase(addContact.pending, (state) => {
-        state.error = false;
         state.loading = true;
+        state.error = null;
       })
-      .addCase(addContact.fulfilled, (state, action) => {
+      .addCase(addContact.fulfilled, (state, action: PayloadAction<Contact>) => {
         state.loading = false;
         state.error = null;
         state.items.push(action.payload);
       })
       .addCase(addContact.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload?.message || "Failed to add contact";
       });
   },
 });

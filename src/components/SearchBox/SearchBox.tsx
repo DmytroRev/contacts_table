@@ -1,4 +1,4 @@
-// SearchBox.jsx
+import './SearchBox.css'
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectNameFilter,
@@ -7,7 +7,9 @@ import {
   selectPhoneFilter,
 } from "../../redux/selectors";
 import { setStatusFilter } from "../../redux/filterSlice";
-import css from "./SearchBox.module.css";
+
+type FilterType = "name" | "username" | "email" | "phone";
+
 export const SearchBox = () => {
   const filterName = useSelector(selectNameFilter);
   const filterUsername = useSelector(selectUsernameFilter);
@@ -16,7 +18,7 @@ export const SearchBox = () => {
 
   const dispatch = useDispatch();
 
-  const handleFilterChange = (filterType) => (e) => {
+  const handleFilterChange = (filterType: FilterType) => (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value.trim();
 
     // Валидация для phone
@@ -31,9 +33,9 @@ export const SearchBox = () => {
   };
 
   return (
-    <div className={css.containerForInput}>
+    <div className='containerForInput'>
       <input
-        className={css.input}
+        className='input'
         type="text"
         value={filterName}
         onChange={handleFilterChange("name")}
@@ -41,21 +43,21 @@ export const SearchBox = () => {
       />
 
       <input
-        className={css.input}
+        className='input'
         type="text"
         value={filterUsername}
         onChange={handleFilterChange("username")}
         placeholder="Filter by username"
       />
       <input
-        className={css.input}
+       className='input'
         type="email"
         value={filterEmail}
         onChange={handleFilterChange("email")}
         placeholder="Filter by email"
       />
       <input
-        className={css.input}
+        className='input'
         type="text"
         value={filterPhone}
         onChange={handleFilterChange("phone")}
